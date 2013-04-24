@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Graphic xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		   xmlns:s="library://ns.adobe.com/flex/spark" 
+		   xmlns:mx="library://ns.adobe.com/flex/mx" width="50" height="50">
+	
+	<s:Group>
+		<s:Group>
+			<s:Path winding="evenOdd" data="M 30 158 C 30 87 90 30 165 30 C 165 30 435 30 435 30 C 510 30 570 87 570 158 C 570 158 570 442 570 442 C 570 513 510 570 435 570 C 435 570 165 570 165 570 C 90 570 30 513 30 442 C 30 442 30 158 30 158 Z " blendMode="normal" alpha="1">
+				<s:fill>
+					<s:SolidColor color="#ffffd7"/>
+				</s:fill>
+				<s:stroke>
+					<s:SolidColorStroke color="#ff9900" weight="50" caps="none"/>
+				</s:stroke>
+			</s:Path>
+		</s:Group>
+		<s:Line xFrom="293" yFrom="147" xTo="293" yTo="327" alpha="1" blendMode="normal">
+			<s:stroke>
+				<s:SolidColorStroke color="#ff9900" weight="95" caps="none"/>
+			</s:stroke>
+		</s:Line>
+		<s:Path winding="evenOdd" data="M 238 451 C 238 421 263 396 293 396 C 323 396 348 421 348 451 C 348 481 323 506 293 506 C 263 506 238 481 238 451 Z " blendMode="normal" alpha="1">
+			<s:fill>
+				<s:SolidColor color="#ff9900"/>
+			</s:fill>
+		</s:Path>
+	</s:Group>
+	
+</s:Graphic>

@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx"
+		 xmlns:assets="br.com.rectius.library.notificator.assets.*"
+		 width="620" height="60" buttonMode="true"
+		 creationCompleteEffect="{moveIn}" 
+		 removedEffect="{moveOut}">
+	<fx:Script>
+		<![CDATA[
+			import spark.filters.BlurFilter;
+		]]>
+	</fx:Script>
+	
+	<!--States-->
+	<s:states>
+		<s:State name="warning"/>
+		<s:State name="success"/>
+		<s:State name="failure"/>
+	</s:states>
+	
+	<fx:Declarations>
+		<!--Effects-->
+		<s:Move id="moveIn" yFrom="{-this.contentHeight}" yTo="0" />
+		<s:Parallel id="moveOut">
+			<s:Move yFrom="0" yTo="{-this.contentHeight}" />
+			<s:AnimateFilter bitmapFilter="{new spark.filters.BlurFilter()}" />
+		</s:Parallel>
+	</fx:Declarations>
+	
+	<fx:Script>
+		<![CDATA[
+			import mx.managers.PopUpManager;
+			
+			//--------------------------------------------------------------------------
+			//
+			//  Properties
+			//
+			//--------------------------------------------------------------------------
+			
+			//----------------------------------
+			//  notificatorTimer
+			//----------------------------------
+			
+			/**
+			 *  @private
+			 */
+			private var notificatorTimer:Timer;
+			
+			//----------------------------------
+			//  message
+			//----------------------------------
+			
+			[Bindable]
+			
+			/**
+			 *  The string that defines the 
+			 *  notification message.
+			 *
+			 *  @langversion 3.0
+			 *  @playerversion Flash 10
+			 *  @playerversion AIR 1.5
+			 *  @productversion Flex 4
+			 */
+			public var message:String;
+			
+			//----------------------------------
+			//  timeDestroy
+			//----------------------------------
+			
+			[Bindable]
+			
+			/**
+			 *  The milliseconds interval that 
+			 *  the notification message will be 
+			 *  visible.
+			 *
+			 *  @langversion 3.0
+			 *  @playerversion Flash 10
+			 *  @playerversion AIR 1.5
+			 *  @productversion Flex 4
+			 */
+			public var timeDestroy:Number = 0;
+			
+			//--------------------------------------------------------------------------
+			//
+			//  Private methods
+			//
+			//--------------------------------------------------------------------------
+			
+			/**
+			 *  @private
+			 *  Recalculates the positioning of the component.
+			 * 
+			 *  @langversion 3.0
+			 *  @playerversion Flash 10
+			 *  @playerversion AIR 1.5
+			 *  @productversion Flex 4
+			 */
+			private function positioning():void
+			{
+				// positioning the component
+				this.x = (this.parentApplication.width / 2) - (this.width / 2);
+			}
+			
+			/**
+			 *  @private
+			 *  Removes the component of the screen.
+			 * 
+			 *  @langversion 3.0
+			 *  @playerversion Flash 10
+			 *  @playerversion AIR 1.5
+			 *  @productversion Flex 4
+			 */
+			private function destroyComponent():void
+			{
+				this.parentApplication.removeEventListener(Event.RESIZE, resize_handler);
+				PopUpManager.removePopUp(this);
+			}
+			
+			
+			//--------------------------------------------------------------------------
+			//
+			//  Handler methods
+			//
+			//--------------------------------------------------------------------------
+			
+			private function resize_handler(event:Event):void
+			{
+				positioning();
+			}
+			
+			private function removeNotificator_handler(event:TimerEvent):void
+			{
+				destroyComponent();
+			}
+			
+			private function componentClick_handler(event:MouseEvent):void
+			{
+				destroyComponent();
+			}
+			
+			
+			//--------------------------------------------------------------------------
+			//
+			//  Public methods
+			//
+			//--------------------------------------------------------------------------
+			
+			public function show():void 
+			{
+				// sets the timer that controls the notification duration
+				notificatorTimer = new Timer(timeDestroy, 1);
+				notificatorTimer.addEventListener(TimerEvent.TIMER_COMPLETE, removeNotificator_handler);
+				notificatorTimer.start();
+				
+				// sets the notification position
+				positioning();
+				
+				// closes the component instance after a mouse click event
+				this.addEventListener(MouseEvent.CLICK, componentClick_handler);
+				
+				// calculates the new position after resize the parent window
+				this.parentApplication.addEventListener(Event.RESIZE, resize_handler);
+			} 
+
+		]]>
+	</fx:Script>
+	
+	<!--Warning background-->
+	<s:Rect left="0" top="0" right="0" bottom="0" includeIn="warning">
+		<s:fill>
+			<s:LinearGradient rotation="90">
+				<s:GradientEntry color="0xAE6800" ratio=".2" />
+				<s:GradientEntry color="0xFF9900" ratio=".9" />
+				<s:GradientEntry color="0xFF9900" ratio=".7" />
+			</s:LinearGradient>
+		</s:fill>
+		<s:stroke>
+			<s:SolidColorStroke color="0xcccccc" />
+		</s:stroke>
+	</s:Rect>
+	
+	<!--Success background-->
+	<s:Rect left="0" top="0" right="0" bottom="0" includeIn="success">
+		<s:fill>
+			<s:LinearGradient rotation="90">
+				<s:GradientEntry color="0x53674e" />
+				<s:GradientEntry color="0xa7cfb0" />
+			</s:LinearGradient>
+		</s:fill>
+		<s:stroke>
+			<s:SolidColorStroke color="0xcccccc" />
+		</s:stroke>
+	</s:Rect>
+	
+	<!--Failure background-->
+	<s:Rect left="0" top="0" right="0" bottom="0" includeIn="failure">
+		<s:fill>
+			<s:LinearGradient rotation="90">
+				<s:GradientEntry color="0x0" />
+				<s:GradientEntry color="0x993300" />
+			</s:LinearGradient>
+		</s:fill>
+		<s:stroke>
+			<s:SolidColorStroke color="0xcccccc" />
+		</s:stroke>
+	</s:Rect>
+	
+	<!--Warning icon-->
+	<assets:IconWarning top="5" bottom="5" left="5" includeIn="warning" />
+	
+	<!--Success icon-->
+	<assets:IconSuccess top="5" bottom="5" left="5" includeIn="success" />
+	
+	<!--Failure icon-->
+	<assets:IconFailure top="5" bottom="5" left="5" includeIn="failure" />
+	
+	<!--Notification message-->
+	<s:Label text="{message}" width="100%" height="100%" left="60"
+			 color="#FFFFFF" fontSize="13" fontWeight="bold"
+			 styleName="notification" verticalAlign="middle" textAlign="left" />
+</s:Group>

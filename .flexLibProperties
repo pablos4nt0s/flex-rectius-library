@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<flexLibProperties includeAllClasses="true" useMultiPlatformConfig="false" version="3">
+  <includeClasses>
+    <classEntry path="br.com.rectius.library.bytearray.gif.decoder.GIFDecoder"/>
+    <classEntry path="br.com.rectius.library.bytearray.gif.encoder.GIFEncoder"/>
+    <classEntry path="br.com.rectius.library.bytearray.gif.encoder.LZWEncoder"/>
+    <classEntry path="br.com.rectius.library.bytearray.gif.encoder.NeuQuant"/>
+    <classEntry path="br.com.rectius.library.bytearray.gif.errors.FileTypeError"/>
+    <classEntry path="br.com.rectius.library.bytearray.gif.events.FileTypeEvent"/>
+    <classEntry path="br.com.rectius.library.bytearray.gif.events.FrameEvent"/>
+    <classEntry path="br.com.rectius.library.bytearray.gif.events.GIFPlayerEvent"/>
+    <classEntry path="br.com.rectius.library.bytearray.gif.events.TimeoutEvent"/>
+    <classEntry path="br.com.rectius.library.bytearray.gif.frames.GIFFrame"/>
+    <classEntry path="br.com.rectius.library.bytearray.gif.player.GIFPlayer"/>
+    <classEntry path="br.com.rectius.library.collapsecontainer.CollapseContainer"/>
+    <classEntry path="br.com.rectius.library.datagrid.DataGridMaturityDateRenderer"/>
+    <classEntry path="br.com.rectius.library.form.FormValidator"/>
+    <classEntry path="br.com.rectius.library.form.TextInputCurrency"/>
+    <classEntry path="br.com.rectius.library.macmenu.MacMenu"/>
+    <classEntry path="br.com.rectius.library.macmenu.MacMenuItem"/>
+    <classEntry path="br.com.rectius.library.macmenu.event.MacMenuEvent"/>
+    <classEntry path="br.com.rectius.library.notificator.Notificator"/>
+    <classEntry path="br.com.rectius.library.notificator.NotificatorManager"/>
+    <classEntry path="br.com.rectius.library.notificator.NotificatorMode"/>
+    <classEntry path="br.com.rectius.library.notificator.assets.IconFailure"/>
+    <classEntry path="br.com.rectius.library.notificator.assets.IconSuccess"/>
+    <classEntry path="br.com.rectius.library.notificator.assets.IconWarning"/>
+    <classEntry path="br.com.rectius.library.pod.components.PodManager"/>
+    <classEntry path="br.com.rectius.library.pod.components.PodWindow"/>
+    <classEntry path="br.com.rectius.library.pod.events.PodWindowEvent"/>
+    <classEntry path="br.com.rectius.library.util.Util"/>
+    <classEntry path="br.com.rectius.library.form.DropDownListSelector"/>
+  </includeClasses>
+  <includeResources/>
+  <namespaceManifests/>
+</flexLibProperties>
